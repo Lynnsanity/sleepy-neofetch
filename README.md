@@ -1,33 +1,18 @@
 Create a deployment
 ===================
 
-## Hello-World Container :)
+Simple dockerfile with script that sleeps and has neofetch, open another tab and exec in it
+to do stuffs
 
-Find an image or create your own using your choice of container image maker like
-Podman, Docker, Buildah, and deploy it with k8s.
+## Pull my sleepy container
 
-I found a simple hello-world image off docker hub and used podman.
+`podman pull docker.io/lynnsanity/sleepy-neofetch:1`
 
-Pull the image down from registry to your local machine
+## Modify this one
 
-`podman pull hello-world`
+Clone the repo down to your machine
 
-Run the container
-
-`podman run hello-world`
-
-Deploy that container
-
-`kubectl create deployment my-first-deployment --image=hello-world:latest`
-
-
-## Make your own
-
-Also made my own Dockerfile and script.sh as an entrypoint.
-
-Build the Dockerfile
-
-`podman build -f Dockerfile -t simple-neofetch`
+`podman build -f Dockerfile -t <whatever-you-want-i-guess>`
 
 To see more info about the images built
 
@@ -35,8 +20,16 @@ To see more info about the images built
 
 Run the image in a container
 
-`podman run simple-neofetch`
+`podman run <the-tag-name>`
 
-## Pull my sleepy container
+New tab and exec inside
 
-`podman pull docker.io/lynnsanity/sleepy-neofetch:1`
+`podman ps` (to get the container id)
+
+`podman exec -it <container-id> sh`
+
+# If you wanna make a deployment with it
+
+`kubectl create deployment my-first-deployment --image=lynnsanity/sleepy-neofetch:1`
+
+
